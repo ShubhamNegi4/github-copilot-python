@@ -1,18 +1,65 @@
 <!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Sudoku Game</title>
-  <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-  <h1>Sudoku Game</h1>
-  <div id="sudoku-board"></div>
-  <div class="controls">
-    <button id="new-game">New Game</button>
-    <button id="check-solution">Check Solution</button>
-    <span id="message"></span>
-  </div>
-  <script src="/static/main.js"></script>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sudoku Challenge</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Classic logic puzzle</p>
+          <h1>Sudoku Challenge</h1>
+        </div>
+        <button id="dark-toggle" class="secondary" type="button" aria-label="Toggle dark mode">Dark mode</button>
+      </header>
+
+      <main class="game-layout">
+        <section class="board-panel" aria-labelledby="game-title">
+          <h2 id="game-title" class="sr-only">Sudoku board</h2>
+          <div id="sudoku-board" aria-label="Sudoku board" role="grid" aria-live="polite"></div>
+
+          <div class="controls" aria-label="Game controls">
+            <label for="difficulty-select" class="difficulty-label">Difficulty</label>
+            <select id="difficulty-select" aria-label="Select difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <button id="new-game" type="button">New Game</button>
+            <button id="check-solution" class="secondary" type="button">Check</button>
+            <button id="hint-button" class="secondary" type="button">Hint</button>
+          </div>
+
+          <div id="message" class="message" aria-live="polite"></div>
+        </section>
+
+        <aside class="sidebar" aria-label="Game info and leaderboard">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-label">Timer</span>
+              <strong id="timer">00:00</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Hints used</span>
+              <strong id="hint-count">0</strong>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label">Difficulty</span>
+              <strong id="difficulty-label">Easy</strong>
+            </div>
+          </div>
+
+          <div class="scoreboard">
+            <h3>Top 10 Fastest Times</h3>
+            <ol id="scoreboard-list"></ol>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="/static/main.js"></script>
+  </body>
 </html>

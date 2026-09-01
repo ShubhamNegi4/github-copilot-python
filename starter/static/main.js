@@ -226,17 +226,16 @@ async function checkSolution() {
       const isFixed = input.disabled && input.classList.contains('prefilled');
       input.classList.remove('invalid', 'valid', 'hint');
 
+      // Skip prefilled cells—they are always correct
       if (isFixed) {
         return;
       }
 
-      if (!input.value) {
-        return;
-      }
-
+      // Any incorrect cell (including empty ones) should be marked red
       if (wrongCells.has(`${row}-${col}`)) {
         input.classList.add('invalid');
-      } else {
+      } else if (input.value) {
+        // Only mark non-empty correct cells as valid
         input.classList.add('valid');
       }
     });
